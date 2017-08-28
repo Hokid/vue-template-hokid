@@ -1,0 +1,91 @@
+.u-text-upper {
+  text-transform: uppercase !important;
+}
+
+.u-fz-xxxs {
+  font-size: $font-size-xxxs;
+}
+
+.u-fz-xxs {
+  font-size: $font-size-xxs;
+}
+
+.u-fz-xs {
+  font-size: $font-size-xs;
+}
+
+.u-fz-s {
+  font-size: $font-size-s;
+}
+
+.u-fz-m {
+  font-size: $font-size-m;
+}
+
+.u-fz-l {
+  font-size: $font-size-l;
+}
+
+.u-fz-xl {
+  font-size: $font-size-xl;
+}
+
+.u-fz-xxl {
+  font-size: $font-size-xxl;
+}
+
+.u-fz-xxxl {
+  font-size: $font-size-xxxl;
+}
+
+.u-fz-x2-25 {
+  font-size: $font-size-x2-25;
+}
+
+.is-vpaddingless {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.is-vmarginless {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.is-space-between {
+  justify-content: space-between !important;
+}
+
+.column.is-centered {
+  align-self: center;
+}
+
+.is-content-right {
+  justify-content: flex-end !important;
+}
+
+.is-content-left {
+  justify-content: flex-start !important;
+}
+
+.is-svg-dragable {
+  position: relative;
+  > .is-svg-placeholder {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+// Для непослушных flex-элементов, не позволяет контенту влиять на ширину
+.has-self-width {
+  width: 0 !important;
+  flex-basis: 0 !important;
+}
+
+.is-fullheight {
+  height: 100%;
+}

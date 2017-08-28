@@ -1,0 +1,12 @@
+html,
+body {
+  min-width: 320px;
+
+  @include desktop() {
+    min-width: $container-width-desktop;
+  }
+}
+
+img {
+  border: 0;
+}

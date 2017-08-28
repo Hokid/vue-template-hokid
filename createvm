@@ -1,0 +1,3 @@
+#/bin/bash
+echo "creating vm 'project-name-vm'..."
+docker-machine create --driver virtualbox project-name-vm

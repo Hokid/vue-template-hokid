@@ -1,0 +1,12 @@
+.l-container {
+  width: $container-width-mobile;
+  margin: 0 auto;
+
+  &:lang(ar) {
+    direction: ltr;
+  }
+
+  @include desktop() {
+    width: $container-width-desktop;
+  }
+}

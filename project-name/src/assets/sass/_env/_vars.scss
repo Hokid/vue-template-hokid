@@ -1,0 +1,25 @@
+$container-width-mobile: 100%;
+$container-width-tablet: 100%;
+$container-width-desktop: 1008px;
+$container-width-widescreen : 1192px;
+
+$size-gutter-0-5: 0.75rem;
+$size-gutter-1: ($size-gutter-0-5 * 2);
+$size-gutter-1-5: ($size-gutter-1 * 1.5);
+
+$line-height: ($body-size * 1.5);
+
+//------------------------------------------------------------------------
+// Размеры шрифта
+//------------------------------------------------------------------------
+
+$font-size-xxxs: ($body-size)-8px !default;
+$font-size-xxs: ($body-size)-6px !default;
+$font-size-xs: ($body-size)-4px !default;
+$font-size-s: ($body-size)-2px !default;
+$font-size-m: $body-size !default;
+$font-size-l: ($body-size)+2px !default;
+$font-size-xl: ($body-size)+4px !default;
+$font-size-xxl: ($body-size)+6px !default;
+$font-size-xxxl: ($body-size)+8px !default;
+$font-size-x2-25: ($body-size)*2.25 !default;

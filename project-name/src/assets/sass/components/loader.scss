@@ -1,0 +1,10 @@
+.loader-box {
+  @include overlay;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  @include loader;
+}

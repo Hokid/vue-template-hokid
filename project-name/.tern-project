@@ -1,0 +1,22 @@
+{
+  "ecmaVersion": 7,
+  "libs": [
+    "browser"
+  ],
+  "loadEagerly": [
+    "src/**/*.js",
+    "src/**/*.vue",
+    "api/**/*.js"
+  ],
+  "dontLoad": [
+    "node_modules/**"
+  ],
+  "plugins": {
+    "es_modules": {},
+    "node": {},
+    "node-express": {},
+    "webpack": {
+      "configPath": "./build/webpack.base.conf.js"
+    }
+  }
+}

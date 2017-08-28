@@ -1,0 +1,188 @@
+// #sass-mixins: разбить, если сложно будет ориентироватся
+
+@mixin hover {
+  &:hover,
+  &:focus {
+
+    @content;
+  }
+}
+
+
+/**
+ * ------------------------------------------------------------------------
+ *     Применят clearfix.
+ * ------------------------------------------------------------------------
+ */
+
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
+
+  &:after { clear: both; }
+}
+
+
+// Алиясы
+
+@mixin crfx {
+  @include clearfix;
+}
+
+/**
+ * ------------------------------------------------------------------------
+ *     Устанавливает горизонтальные margin.
+ * ------------------------------------------------------------------------
+ */
+
+@mixin h-margin($size) {
+  margin-left: $size;
+  margin-right: $size;
+}
+
+
+//Алиасы
+
+@mixin hmr($size) {
+  @include h-margin($size);
+}
+
+/**
+ * ------------------------------------------------------------------------
+ *     Устанавливает горизонтальные padding.
+ * ------------------------------------------------------------------------
+ */
+
+@mixin h-padding($size) {
+  padding-left: $size;
+  padding-right: $size;
+}
+
+
+// Алиасы
+
+@mixin hpd($size) {
+  @include h-padding($size);
+}
+
+@mixin h-position( $size ) {
+  top: $size;
+  bottom: $size;
+}
+
+
+// Алиасы
+
+@mixin h-pos($size) {
+  @include h-position($size);
+}
+
+@mixin position-fixed {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: visible;
+  -ms-backface-visibility: hidden;
+  position: fixed;
+}
+
+@mixin set-btn-size($font-size, $height) {
+
+  @include vpd(($height - $font-size) / 2);
+
+  font-size: $font-size;
+  line-height: $font-size;
+}
+
+/**
+ * ------------------------------------------------------------------------
+ *     Устанавливает widht и height.
+ * ------------------------------------------------------------------------
+ */
+
+@mixin size( $width, $height:$width ) {
+  width: $width;
+  height: $height;
+}
+
+
+/**
+ * ------------------------------------------------------------------------
+ *     Устанавливает вертикальные margin.
+ * ------------------------------------------------------------------------
+ */
+
+@mixin v-margin( $size ) {
+  margin-top: $size;
+  margin-bottom: $size;
+}
+
+
+//Алиасы
+
+@mixin vmr($size) {
+  @include v-margin($size);
+}
+
+
+/**
+ * ------------------------------------------------------------------------
+ *     Устанавливает вертикальные padding.
+ * ------------------------------------------------------------------------
+ */
+
+@mixin v-padding($size) {
+  padding-top: $size;
+  padding-bottom: $size;
+}
+
+
+// Алиасы
+
+@mixin vpd($size) {
+  @include v-padding($size);
+}
+
+@mixin v-position( $size ) {
+  top: $size;
+  bottom: $size;
+}
+
+
+// Алиасы
+
+@mixin v-pos($size) {
+  @include v-position($size);
+}
+
+// http://compass-style.org/reference/compass/typography/text/ellipsis/#mixin-ellipsis
+@mixin ellipsis($no-wrap: true) {
+  @if $no-wrap {
+    white-space: nowrap;
+  }
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin button-reset() {
+  border: 0;
+  box-shadow: none;
+  text-align: left;
+  background: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin rounded-btn-gradient() {
+  background: linear-gradient(331deg, rgba(104,142,222,1) 0%, rgba(61,71,94,1) 77%, rgba(61,71,94,1) 100%);
+}
+
+@mixin placeholder {
+  &.placeholder { @content; }
+  &:-moz-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &::-webkit-input-placeholder { @content; }
+}

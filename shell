@@ -1,0 +1,24 @@
+#/bin/bash
+##bash: сделать проверку состояние certs
+
+if [[ ! $PATH =~ $(PWD) ]]; then
+  echo "add pwd path to PATH"
+  export PATH="$PATH:$(PWD)"
+fi;
+if [ -z "$(docker-machine ls --filter="name=project-name-vm" --filter="state=running" -q)" ]; then
+  echo "Machine project-name-vm nor running.."
+  echo "Run project-name-vm machine.."
+  docker-machine start project-name-vm
+fi;
+if [ ! -z "$(docker-machine ls --filter="name=project-name-vm" -q)" ]; then
+  echo "Welcome to project-name-vm shell"
+  echo "ip: "$(docker-machine ip project-name-vm)
+  eval "$(docker-machine env --shell=bash --no-proxy project-name-vm)"
+  export PROJECT_ENV="project-name"
+  source ./env
+  exec "$BASH" --login -i
+else
+  echo "machine 'project-name-vm' doesn\`t exitst"
+  echo "run createvm before"
+  exit 1
+fi;

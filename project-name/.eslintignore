@@ -1,0 +1,4 @@
+build/*.js
+config/*.js
+flow-typed/**/*.js
+api/**/*.js

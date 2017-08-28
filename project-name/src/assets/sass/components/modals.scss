@@ -1,0 +1,66 @@
+@import '~bulma/sass/components/modal';
+
+.modal-content,
+.modal-card {
+  max-height: calc(100% - 160px);
+
+  @include tablet {
+    margin: 0;
+    max-height: calc(100% - 40px);
+    width: 640px;
+  }
+}
+
+.modal-popup {
+  padding: $line-height;
+  position: relative;
+
+  &--alert {
+    background-color: #fff;
+    color: #fff;
+  }
+
+  &--success {
+    background-color: #fff;
+    color: #fff;
+  }
+
+  &__head {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: $line-height $line-height 0;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__closer {
+    @include button-reset;
+    cursor: pointer;
+    margin-left: auto;
+    transition: transform 0.3s;
+
+    > svg {
+      fill: #fff;
+      vertical-align: top;
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  &__body {
+    overflow: hidden;
+  }
+
+  &__text {
+    padding-right: 48px;
+  }
+
+  &__ico {
+    fill: #fff;
+    width: 100%;
+  }
+}

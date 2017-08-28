@@ -1,0 +1,48 @@
+version: "3"
+services:
+  selenium-chrome:
+    image: selenium/standalone-chrome
+    container_name: selenium-chrome
+
+  project-name-dev:
+    image: project-name
+    environment:
+      NODE_ENV: 'development'
+    container_name: project-name-dev
+    working_dir: /projects/project-name
+    volumes:
+      - ./project-name:/projects/project-name
+    networks:
+      project-name-nt:
+    ports:
+      - "3000:3000"
+
+  project-name-test:
+    image: project-name
+    environment:
+      NODE_ENV: 'tests'
+    container_name: project-name-test
+    depends_on:
+      - selenium-chrome
+    volumes:
+      - ./project-name:/projects/project-name
+    networks:
+      project-name-nt:
+
+  project-name-prod:
+    image: project-name
+    environment:
+      NODE_ENV: 'production'
+    container_name: project-name-prod
+    volumes:
+      - ./nginx-default/configs:/etc/nginx
+      - ./nginx-default/logs:/projects/logs
+      - ./project-name:/projects/project-name
+    networks:
+      project-name-nt:
+    ports:
+      - "80:80"
+      - "443:443"
+
+networks:
+  project-name-nt:

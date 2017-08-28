@@ -1,0 +1,6 @@
+#/bin/bash
+echo "building nginx image..."
+docker build -t nginx-default ./nginx-default
+echo "building cabinet-frontend image..."
+docker build -t project-name ./project-name
+echo "building images has been done..."

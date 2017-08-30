@@ -1,4 +1,4 @@
-# ff-lk-frontend
+# project-name
 
 > Frontend side ff private cabinet
 

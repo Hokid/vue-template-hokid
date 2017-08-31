@@ -20,12 +20,10 @@ const i18n = new VueI18n({
   locale: Store.state.lang,
   messages: getLangListAsObject(),
   missing(locale, key, vm) {
-    if (process.env.NODE_ENV !== 'production') {
-      log({
-        name: 'i18n',
-        msg: 'miss: ' + locale + ', ' + key
-      });
-    }
+    logIt({
+      tag: 'i18n',
+      message: 'miss: ' + locale + ', ' + key
+    });
   }
 });
 

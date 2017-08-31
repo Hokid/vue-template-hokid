@@ -105,10 +105,6 @@ export class API {
   }
 
   addHook(name: string, cb: Function) {
-    if (typeof cb !== 'function') {
-      error('addHook: cb must by function', TypeError);
-    }
-
     switch (name) {
       case 'before':
         beforeHooks.push(cb);
@@ -120,10 +116,6 @@ export class API {
   }
 
   removeHook(name: string, cb: Function) {
-    if (typeof cb !== 'function') {
-      error('removeHook: cb must by function', TypeError);
-    }
-
     switch (name) {
       case 'before':
         beforeHooks = beforeHooks.filter((_cb) => {

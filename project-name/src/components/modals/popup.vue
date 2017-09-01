@@ -11,7 +11,7 @@
           <svg-icon class="modal-popup__ico" :name="iconName" width="100%"></svg-icon>
         </div>
         <div class="column is-9">
-          <div class="modal-popup__text" v-html="$t(data.message)"></div>
+          <div class="modal-popup__text" v-html="message"></div>
         </div>
       </div>
     </div>
@@ -20,15 +20,14 @@
 <script>
 export default {
   name: 'Popup',
-  props: ['data'],
   computed: {
     classes() {
       return {
-        ['modal-popup--' + this.data.type]: true
+        ['modal-popup--' + this.type]: true
       }
     },
     iconName() {
-      return this.data.type;
+      return this.type;
     }
   },
   methods: {

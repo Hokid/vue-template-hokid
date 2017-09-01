@@ -3,7 +3,7 @@
 
 import Client from './';
 import { API } from '@/api';
-import { warn } from '@/core/handlers';
+import { logIt } from '@/core/handlers';
 import merge from 'lodash/merge';
 
 class SAPI extends API {
@@ -13,16 +13,20 @@ class SAPI extends API {
   }
 
   addHook() {
-    warn({
-      name: 'sapi',
-      msg: 'not implemented'
+    logIt({
+      tag: 'SAPI',
+      message: 'addHook not implemented',
+      style: 'warn',
+      trace: true
     });
   }
 
   removeHook() {
-    warn({
-      name: 'sapi',
-      msg: 'not implemented'
+    logIt({
+      tag: 'SAPI',
+      message: 'removeHook not implemented',
+      style: 'warn',
+      trace: true
     });
   }
 }

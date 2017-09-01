@@ -3,55 +3,51 @@ import GlobalEvents from './events';
 import { defaults } from 'lodash';
 
 const store = {
-  errors: [],
-  logs: [],
-  warn: []
+  logs: []
 };
 
-const orangeHighlight = '\
-color: #4a2713;\
-background: #f59417;\
-font-size: 12px;\
-font-weight: 900;\
-padding: 1px;';
+const COLORS = {
+  error: '\
+  color: #4a2713;\
+  background: #f51717;\
+  font-size: 12px;\
+  font-weight: 900;\
+  padding: 1px;',
 
-const redHighlight = '\
-color: #4a2713;\
-background: #f51717;\
-font-size: 12px;\
-font-weight: 900;\
-padding: 1px;';
+  info: '\
+  color: #4a2713;\
+  background: #f59417;\
+  font-size: 12px;\
+  font-weight: 900;\
+  padding: 1px;',
 
-export function errorIt(options = {}) {
-  defaults(options, { throw: true, timestamp: Date.now(), type: Error });
-
-  if (process.env.NODE_ENV !== 'production') {
-    // Ни в коем случае не производить событие с именем 'error' ->
-    // Node.js EventEmmiter выбрасывает реальную ошибку, заложено в коде метода $emit
-    GlobalEvents.emit('core:handlers:errorIt', options);
-    console.info(`%c ${(options.message || 'no message')}`, redHighlight, options.message, options.debug);
-    store.errors.push(options);
-  }
-  if (options.throw) {
-    // eslint-disable-next-line
-    throw new options.type(options.message);
-  } else {
-    try {
-      // eslint-disable-next-line
-      throw new options.type(options.message);
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  warn: '\
+  color: #fff;\
+  background: blue;\
+  font-size: 12px;\
+  font-weight: 900;\
+  padding: 1px;'
 };
 
 export function logIt(options = {}) {
-  defaults(options, { timestamp: Date.now() });
+  defaults(options, { timestamp: Date.now(), style: 'info' });
 
   if (process.env.NODE_ENV !== 'production') {
     GlobalEvents.emit('core:handlers:logIt', options);
-    console.info(`%c [${(options.tag || 'Unnamed')}]: ${(options.message || 'no message')}`, orangeHighlight, options.debug);
+    console.info(`%c [${(options.tag || 'Unnamed')}]: ${(options.message || 'no message')}`, COLORS[options.style], options.debug);
     store.logs.push(options);
+
+    if (options.trace) {
+      if ('trace' in console) {
+        console.trace();
+      } else {
+        try {
+          throw new Error();
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }
   }
 };
 

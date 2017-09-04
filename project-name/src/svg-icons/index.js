@@ -1,5 +1,6 @@
 /**
 Глобальный Vue компонент, позволяющий более удобным способом использовать svg-иконки
+Пример: <svg-icon name="name" width="14" height="14">
 */
 import merge from 'lodash/merge';
 

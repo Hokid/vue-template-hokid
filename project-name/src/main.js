@@ -5,6 +5,7 @@
 import datasetPolyfill from 'element-dataset';
 datasetPolyfill();
 import 'babel-polyfill';
+import 'eventsource-polyfill';
 import Vue from 'vue';
 import VueTouch from 'vue-touch';
 import VueSimpleBreakpoints from 'vue-simple-breakpoints';

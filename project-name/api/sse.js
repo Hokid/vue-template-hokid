@@ -1,4 +1,4 @@
-var eventsource = require('express-eventsource');
+var eventsource = require('./express-eventsource/lib/sse');
 
 var sse = eventsource();
 

@@ -1,0 +1,56 @@
+{
+  "_from": "express-eventsource",
+  "_id": "express-eventsource@0.0.4",
+  "_inBundle": false,
+  "_integrity": "sha1-EHz+9wbz3TbHRUWUCydIHhpaQCw=",
+  "_location": "/express-eventsource",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "express-eventsource",
+    "name": "express-eventsource",
+    "escapedName": "express-eventsource",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/express-eventsource/-/express-eventsource-0.0.4.tgz",
+  "_shasum": "107cfef706f3dd36c74545940b27481e1a5a402c",
+  "_spec": "express-eventsource",
+  "_where": "/projects/cabinet-frontend",
+  "author": {
+    "name": "jinroh",
+    "url": "Pierre Guilleminot"
+  },
+  "bugs": {
+    "url": "https://github.com/jinroh/express-eventsource/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Server-sent events middleware for expressjs",
+  "devDependencies": {
+    "express": "~3.3.3"
+  },
+  "homepage": "https://github.com/jinroh/express-eventsource#readme",
+  "keywords": [
+    "server-sent-events",
+    "sse",
+    "event-source",
+    "express",
+    "expressjs",
+    "middleware"
+  ],
+  "license": "BSD",
+  "main": "lib/sse.js",
+  "name": "express-eventsource",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jinroh/express-eventsource.git"
+  },
+  "version": "0.0.4"
+}

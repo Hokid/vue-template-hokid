@@ -1,8 +1,6 @@
 // @flow
 /*
 Пока реализован канал через EventSource
-
-#EventSource: добавить полифил
 */
 
 import {
@@ -15,6 +13,7 @@ import Client from '@/client';
 export class EventSourceChannel {
   _events = null;
   _eventsource = null;
+  chanelId = null;
   _url = null;
   _tm = null;
   // Дефолтные опции
@@ -27,7 +26,7 @@ export class EventSourceChannel {
   // В Конструктор передаем урл стрима и опиции
   constructor(url: string, options: any = {}) {
     merge(this.options, options);
-    bindAll(this, ['_reconnect', '_rebindEvents', '_connect']);
+    bindAll(this, ['_reconnect', '_rebindEvents', '_connect', '_setChannelId']);
     this._url = url;
     this._events = [];
     this._connect();
@@ -42,6 +41,11 @@ export class EventSourceChannel {
       this._eventsource = new EventSource(`${this._url}/${Client.token()}`);
     }
     this._eventsource.onerror = this._reconnect;
+    this._eventsource.addEventListener('openchannel', this._setChannelId);
+  }
+
+  _setChannelId(e) {
+    this.channelId = e.data;
   }
 
   _rebindEvents() {
@@ -85,7 +89,7 @@ export class EventSourceChannel {
             }
           }
         }
-        d.originListener(data);
+        d.originListener(data, e);
       };
 
       current = {

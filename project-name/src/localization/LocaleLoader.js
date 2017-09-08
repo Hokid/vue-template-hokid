@@ -1,11 +1,14 @@
 // @flow
 import Store from '@/store';
 import merge from 'lodash/merge';
+import { i18n } from './';
+import Vue from 'vue';
 
 // Управление загрузкой локализаций
 export default class LocaleLoader {
   translations: Array<string>;
   _Vue: any;
+  _isDestroyed = false;
   storeUnWatch: Function;
   loadingLangs: Array<string>;
 
@@ -27,17 +30,23 @@ export default class LocaleLoader {
   };
 
   destroy() {
+    this._isDestroyed = true;
     this.storeUnWatch();
   };
 
   triggerUpdateLoadingLangs() {
+    // if (this._isDestroyed) {
+    //   return;
+    // }
+
     if (typeof this._Vue.$options.updateLodingsLangList === 'function') {
-      this._Vue.$options.updateLodingsLangList(this.loadingLangs);
+      // Может вызвать бесконечный лууп, если компонент делает какие-то изменения в коллбэке,
+      // которые приводят к перерендеру в котором он будет destroyed
+      this._Vue.$options.updateLodingsLangList.call(this._Vue, this.loadingLangs);
     }
   };
 
   updateTranslations() {
-    const _this = this;
     const lang = Store.state.lang;
 
     this.loadingLangs.push(lang);
@@ -45,14 +54,14 @@ export default class LocaleLoader {
 
     this.loadTranslations(Store.state.lang)
       .then((loaded) => {
-        _this._Vue.$i18n.mergeLocaleMessage(lang, loaded);
-        _this.loadingLangs.splice(_this.loadingLangs.indexOf(lang), 1);
-        _this.triggerUpdateLoadingLangs();
+        i18n.mergeLocaleMessage(lang, loaded);
+        this.loadingLangs.splice(this.loadingLangs.indexOf(lang), 1);
+        this.triggerUpdateLoadingLangs();
       })
       .catch((e) => {
-        _this._Vue.$emit('localization:error:loadTranslations', e);
-        _this.loadingLangs.splice(_this.loadingLangs.indexOf(lang), 1);
-        _this.triggerUpdateLoadingLangs();
+        this._Vue.$emit('localization:error:loadTranslations', e);
+        this.loadingLangs.splice(this.loadingLangs.indexOf(lang), 1);
+        this.triggerUpdateLoadingLangs();
       });
   };
 

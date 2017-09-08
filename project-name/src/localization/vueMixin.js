@@ -1,7 +1,7 @@
 import LocaleLoader from './LocaleLoader';
 
 export default {
-  created() {
+  beforeCreate() {
     if (this.$options.translations !== undefined) {
       this.localeLoader = new LocaleLoader(this.$options.translations);
       this.localeLoader.init(this);
@@ -10,8 +10,8 @@ export default {
   beforeDestroy() {
     if (this.localeLoader instanceof LocaleLoader) {
       this.localeLoader.destroy();
-      delete this.$options.translations;
-      delete this.localeLoader;
+      this.$options.translations = undefined;
+      this.localeLoader = undefined;
     }
   }
 };

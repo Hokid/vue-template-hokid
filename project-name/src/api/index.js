@@ -66,9 +66,17 @@ export class API {
         return Promise.resolve(resp);
       })
       .catch((err) => {
+        if (axios.isCancel(err)) {
+          err.isCancel = true;
+          return Promise.reject(err);
+        }
+
+        // Если переданы данные
         if (err.response) {
+          // Запуск хука after
           err.response.data = callHook('after', err.response.data);
         }
+        // Генерируем событие
         GlobalEvents.emit('api:error', err);
         return Promise.reject(err);
       });

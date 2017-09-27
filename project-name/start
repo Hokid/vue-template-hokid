@@ -11,7 +11,9 @@ fi;
 # Установка нод-модулей API серва
 if [ ! -d "/projects/project-name/api/node_modules" ]; then
   echo "instaling api node_modules..."
+  cd api/
   npm install
+  cd ..
   echo "done..."
 fi;
 
